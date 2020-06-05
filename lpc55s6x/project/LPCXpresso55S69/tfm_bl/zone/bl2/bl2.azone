@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="bl2.rzone"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <configure/>
+  <partition>
+    <memory access="rx" info="Scratch area for Bootloader" name="SCRATCH" physical="0x00070000" privilege="" security="s" size="0x20000" start="0x10070000" type="ROM"/>
+    <memory access="rx" info="Bootloader Image" name="IMAGE_BL2" physical="0x00000000" privilege="" security="s" size="0x10000" start="0x10000000" type="ROM"/>
+    <memory info="Bootloader CODE section" name="CODE_BL2" offset="0x00000000" parent="IMAGE_BL2" size="0x00010000" startup="1"/>
+    <memory access="rx" info="Non-secure Image Secondary slot" name="IMAGE_2_NS" privilege="" security="n" size="0x10000" start="0x00060000" type="ROM"/>
+    <memory access="rx" info="Flash" name="FLASH" security="" size="0x0009DE00" start="0x00000000" type="ROM"/>
+    <memory access="rx" info="Non-volatile Counters" name="NV_COUNTERS" physical="0x00096000" privilege="" security="s" shared="1" size="0x00000200" start="0x10096000" type="ROM"/>
+    <memory access="rw" info="SRAM Banks 0-4 (Secure)" name="SRAM_S" physical="0x20000000" privilege="" security="s" shared="1" size="0x00044000" start="0x30000000" type="RAM"/>
+    <memory fixed="1" info="Boot shared DATA section" name="DATA_BOOT" offset="0x00000000" parent="SRAM_S" size="0x00000400"/>
+    <memory fixed="1" info="Bootloader DATA section" name="DATA_BL2" offset="0x00000400" parent="SRAM_S" size="0x0001D400"/>
+    <memory fixed="1" info="Bootloader HEAP section" name="HEAP_BL2" offset="0x0001D800" parent="SRAM_S" size="0x00001000"/>
+    <memory fixed="1" info="Bootloader STACK section" name="STACK_BL2" offset="0x0001E800" parent="SRAM_S" size="0x00001800"/>
+    <memory access="rx" info="Non-secure Image Primary slot" name="IMAGE_1_NS" privilege="" security="n" shared="1" size="0x10000" start="0x00030000" type="ROM"/>
+  </partition>
+  <zones>
+    <zone Pname="" info="" name="bl2" privilege="" security="s">
+      <assign memory="CODE_BL2"/>
+      <assign memory="DATA_BOOT"/>
+      <assign memory="DATA_BL2"/>
+      <assign memory="HEAP_BL2"/>
+      <assign memory="STACK_BL2"/>
+    </zone>
+  </zones>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+</azone>

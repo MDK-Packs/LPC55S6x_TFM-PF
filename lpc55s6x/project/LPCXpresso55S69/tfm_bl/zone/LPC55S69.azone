@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.1.1" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="LPC55S69.rzone"/>
+  <configure/>
+  <partition>
+    <memory access="rx" info="Boot ROM (Secure)" name="ROM_S" physical="0x03000000" privilege="" security="s" size="0x00020000" start="0x13000000" type="ROM"/>
+    <memory access="rx" fixed="1" info="Bootloader Image" name="IMAGE_BL2" offset="0x0" parent="FLASH_S" privilege="" security="s" size="0x10000"/>
+    <memory fixed="1" info="Secure Image Primary slot" name="IMAGE_1_S" offset="0x10000" parent="FLASH_S" size="0x20000"/>
+    <memory fixed="1" info="Secure Image Secondary slot" name="IMAGE_2_S" offset="0x00040000" parent="FLASH_S" size="0x00020000"/>
+    <memory fixed="1" info="Scratch area for Bootloader" name="SCRATCH" offset="0x70000" parent="FLASH_S" size="0x20000"/>
+    <memory access="rx" fixed="1" info="Secure Storage area" name="SST" offset="0x00090000" parent="FLASH_S" privilege="" security="s" size="0x00004000"/>
+    <memory access="rx" fixed="1" info="Internal Trusted Storage Area" name="ITS" offset="0x00094000" parent="FLASH_S" privilege="" security="s" size="0x00002000"/>
+    <memory access="rx" fixed="1" info="Non-volatile Counters" name="NV_COUNTERS" offset="0x00096000" parent="FLASH_S" privilege="" security="s" size="0x00000200"/>
+    <memory access="rx" fixed="1" info="Non-secure Image Primary slot" name="IMAGE_1_NS" offset="0x30000" parent="FLASH" privilege="" security="n" size="0x10000"/>
+    <memory access="rx" fixed="1" info="Non-secure Image Secondary slot" name="IMAGE_2_NS" offset="0x60000" parent="FLASH" privilege="" security="n" size="0x10000"/>
+    <peripheral access="prw" info="Analog Control" name="ANACTRL" size="0x010C" start="0x40013000" start_s="0x50013000"/>
+    <peripheral access="prw" info="CRC Engine" name="CRC_ENGINE" size="0x000C" start="0x40095000" start_s="0x50095000"/>
+    <peripheral access="prw" info="OS Event Timer" name="OSEVTIMER" size="0x0020" start="0x4002D000" start_s="0x5002D000"/>
+    <peripheral access="prw" info="Windowed Watchdog Timer" name="WWDT" size="0x001C" start="0x4000C000" start_s="0x5000C000"/>
+    <peripheral access="prw" info="Multi-Rate Timer" name="MRT" size="0x00FC" start="0x4000D000" start_s="0x5000D000"/>
+    <peripheral access="prw" info="HASH-AES" name="HASH-AES" size="0x00A0" start="0x400A4000" start_s="0x500A4000"/>
+    <peripheral access="prw" info="SCTimer/PWM" name="SCT" size="0x0550" start="0x40085000" start_s="0x50085000"/>
+    <peripheral access="prw" info="General Purpose I/O" name="GPIO" size="0x2490" start="0x4008C000" start_s="0x5008C000"/>
+    <peripheral access="prw" info="PowerQuad DSP Coprocessor and Accelerator" name="POWERQUAD" size="0x0260" start="0x40150000" start_s="0x50150000"/>
+    <peripheral access="prw" info="Programmable Logic Unit" name="PLU" size="0x0C20" start="0x4003D000" start_s="0x5003D000"/>
+    <peripheral access="prw" info="Sysctl (I2S signal sharing)" name="SYSCTL" size="0x1000" start="0x40023000" start_s="0x50023000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM5" size="0x1000" start="0x40096000" start_s="0x50096000"/>
+    <peripheral access="prw" group="DMA" info="Secure DMA Controller 1" name="DMA1" size="0x05FC" start="0x400A7000" start_s="0x500A7000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM0" privilege="" security="n" size="0x1000" start="0x40086000" start_s="0x50086000"/>
+    <peripheral access="prw" info="Power Management" name="PMC" size="0x00CC" start="0x40020000" start_s="0x50020000"/>
+    <peripheral access="prw" info="ADC Controller" name="ADC" size="0x1000" start="0x400A0000" start_s="0x500A0000"/>
+    <peripheral access="prw" info="Input Multiplexing" name="INPUTMUX" size="0x07B4" start="0x40006000" start_s="0x50006000"/>
+    <peripheral access="prw" info="Pin Interrupt and Pattern Match" name="PINT" size="0x0034" start="0x40004000" start_s="0x50004000"/>
+    <peripheral access="prw" info="USB0 Full-speed Host Controller" name="USBFSH" size="0x0060" start="0x400A2000" start_s="0x500A2000"/>
+    <peripheral access="prw" info="Debug Mailbox" name="DGBMAILBOX" size="0x0100" start="0x4009C000" start_s="0x5009C000"/>
+    <peripheral access="prw" info="Physical Unclonable Function" name="PUF" size="0x0260" start="0x4003B000" start_s="0x5003B000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM7" size="0x1000" start="0x40098000" start_s="0x50098000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM6" size="0x1000" start="0x40097000" start_s="0x50097000"/>
+    <peripheral access="prw" group="CTIMER" info="Standard Counter/Timer 0" name="CTIMER0" size="0x0088" start="0x40008000" start_s="0x50008000"/>
+    <peripheral access="prw" group="DMA" info="DMA Controller 0" name="DMA0" size="0x05FC" start="0x40082000" start_s="0x50082000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM1" privilege="" security="s" size="0x1000" start="0x40087000" start_s="0x50087000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM2" size="0x1000" start="0x40088000" start_s="0x50088000"/>
+    <peripheral access="prw" info="PRINCE dynamic encrypt/decrypt" name="PRINCE" size="0x0040" start="0x40035000" start_s="0x50035000"/>
+    <peripheral access="prw" group="CTIMER" info="Standard Counter/Timer 1" name="CTIMER1" size="0x0088" start="0x40009000" start_s="0x50009000"/>
+    <peripheral access="prw" info="I/O Pin Configuration" name="IOCON" size="0x0100" start="0x40001000" start_s="0x50001000"/>
+    <peripheral access="prw" info="Secure Pin Interrupt and Pattern Match" name="SPINT" size="0x0034" start="0x40005000" start_s="0x50005000"/>
+    <peripheral access="prw" group="GINT" info="Group GPIO Input Interrupt 1" name="GINT1" size="0x0048" start="0x40003000" start_s="0x50003000"/>
+    <peripheral access="prw" info="AHB Secure Controller" name="AHB_SECURE_CTRL" privilege="" security="s" size="0x1000" start="0x400AC000" start_s="0x500AC000"/>
+    <peripheral access="prw" info="Inter-CPU Mailbox" name="MAILBOX" size="0x00FC" start="0x4008B000" start_s="0x5008B000"/>
+    <peripheral access="prw" info="Flash Controller" name="FLASH" size="0x1000" start="0x40034000" start_s="0x50034000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM4" size="0x1000" start="0x4008A000" start_s="0x5008A000"/>
+    <peripheral access="prw" info="Real-Time Clock" name="RTC" size="0x0060" start="0x4002C000" start_s="0x5002C000"/>
+    <peripheral access="prw" info="Hi-speed SPI Interface" name="SPI8" size="0x1000" start="0x4009F000" start_s="0x5009F000"/>
+    <peripheral access="prw" group="CTIMER" info="Standard Counter/Timer 4" name="CTIMER4" size="0x0088" start="0x4002A000" start_s="0x5002A000"/>
+    <peripheral access="prw" info="Syscon" name="SYSCON" size="0x1000" start="0x40000000" start_s="0x50000000"/>
+    <peripheral access="prw" info="USB1 High-speed Device Controller" name="USBHSD" size="0x0038" start="0x40094000" start_s="0x50094000"/>
+    <peripheral access="prw" info="Secure General Purpose I/O" name="SGPIO" size="0x2490" start="0x400A8000" start_s="0x500A8000"/>
+    <peripheral access="prw" info="True Random Number Generator" name="RNG" size="0x1000" start="0x4003A000" start_s="0x5003A000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM3" size="0x1000" start="0x40089000" start_s="0x50089000"/>
+    <peripheral access="prw" info="USB1 High-speed Host Controller" name="USBHSH" size="0x0054" start="0x400A3000" start_s="0x500A3000"/>
+    <peripheral access="prw" info="Cryptographic Accelerator" name="CASPER" size="0x1000" start="0x400A5000" start_s="0x500A5000"/>
+    <peripheral access="prw" info="SD/MMC" name="SDMMC" size="0x1000" start="0x4009B000" start_s="0x5009B000"/>
+    <peripheral access="prw" group="CTIMER" info="Standard Counter/Timer 2" name="CTIMER2" size="0x0088" start="0x40028000" start_s="0x50028000"/>
+    <peripheral access="prw" info="USB0 Full-speed Device Controller" name="USBFSD" size="0x0038" start="0x40084000" start_s="0x50084000"/>
+    <peripheral access="prw" info="Micro-Tick Timer" name="UTICK" size="0x0020" start="0x4000E000" start_s="0x5000E000"/>
+    <peripheral access="prw" group="GINT" info="Group GPIO Input Interrupt 0" name="GINT0" size="0x0048" start="0x40002000" start_s="0x50002000"/>
+    <peripheral access="prw" info="USB1 High-speed PHY" name="USBPHY" size="0x0110" start="0x40038000" start_s="0x50038000"/>
+    <peripheral access="prw" group="CTIMER" info="Standard Counter/Timer 3" name="CTIMER3" size="0x0088" start="0x40029000" start_s="0x50029000"/>
+  </partition>
+  <zones>
+    <zone Pname="cm33_core0" info="" name="bl2" privilege="" security="s">
+      <assign memory="IMAGE_1_NS"/>
+      <assign memory="IMAGE_2_NS"/>
+      <assign memory="IMAGE_1_S"/>
+      <assign memory="SCRATCH"/>
+      <assign memory="IMAGE_BL2"/>
+      <assign memory="SRAM_S"/>
+      <assign memory="NV_COUNTERS"/>
+      <assign memory="FLASH"/>
+      <assign memory="FLASH_S"/>
+      <assign memory="IMAGE_2_S"/>
+    </zone>
+    <zone Pname="cm33_core0" info="" name="tfm" privilege="" security="">
+      <assign memory="IMAGE_1_S"/>
+      <assign memory="IMAGE_1_NS"/>
+      <assign peripheral="AHB_SECURE_CTRL"/>
+      <assign peripheral="GPIO"/>
+      <assign peripheral="PMC"/>
+      <assign peripheral="INPUTMUX"/>
+      <assign peripheral="SYSCON"/>
+      <assign peripheral="IOCON"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM0"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM1"/>
+      <assign memory="ITS"/>
+      <assign memory="SST"/>
+      <assign memory="SRAM_S"/>
+      <assign memory="SRAM"/>
+      <assign memory="NV_COUNTERS"/>
+      <assign memory="FLASH_FFR"/>
+      <assign memory="FLASH_FFR_S"/>
+      <assign memory="ROM"/>
+      <assign memory="ROM_S"/>
+      <assign memory="SRAMX"/>
+      <assign memory="SRAMX_S"/>
+      <assign memory="USB_SRAM"/>
+      <assign memory="USB_SRAM_S"/>
+      <assign group="CTIMER" peripheral="CTIMER0"/>
+      <assign group="CTIMER" peripheral="CTIMER2"/>
+      <assign group="CTIMER" peripheral="CTIMER1"/>
+      <assign group="CTIMER" peripheral="CTIMER3"/>
+      <assign group="CTIMER" peripheral="CTIMER4"/>
+      <assign group="DMA" peripheral="DMA0"/>
+      <assign group="DMA" peripheral="DMA1"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM2"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM3"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM4"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM5"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM6"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM7"/>
+      <assign group="GINT" peripheral="GINT0"/>
+      <assign group="GINT" peripheral="GINT1"/>
+      <assign peripheral="PINT"/>
+      <assign peripheral="SPINT"/>
+      <assign peripheral="WWDT"/>
+      <assign peripheral="MRT"/>
+      <assign peripheral="UTICK"/>
+      <assign peripheral="ANACTRL"/>
+      <assign peripheral="SYSCTL"/>
+      <assign peripheral="RTC"/>
+      <assign peripheral="OSEVTIMER"/>
+      <assign peripheral="FLASH"/>
+      <assign peripheral="PRINCE"/>
+      <assign peripheral="USBPHY"/>
+      <assign peripheral="RNG"/>
+      <assign peripheral="PUF"/>
+      <assign peripheral="PLU"/>
+      <assign peripheral="USBFSD"/>
+      <assign peripheral="SCT"/>
+      <assign peripheral="MAILBOX"/>
+      <assign peripheral="USBHSD"/>
+      <assign peripheral="CRC_ENGINE"/>
+      <assign peripheral="SDMMC"/>
+      <assign peripheral="DGBMAILBOX"/>
+      <assign peripheral="SPI8"/>
+      <assign peripheral="ADC"/>
+      <assign peripheral="USBFSH"/>
+      <assign peripheral="USBHSH"/>
+      <assign peripheral="HASH-AES"/>
+      <assign peripheral="CASPER"/>
+      <assign peripheral="SGPIO"/>
+      <assign peripheral="POWERQUAD"/>
+    </zone>
+  </zones>
+</azone>

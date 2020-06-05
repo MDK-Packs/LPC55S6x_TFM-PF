@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <creator azone="../tfm_ns.azone" info="" rzone="../tfm_ns.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <device Dname="LPC55S69" Dvendor="NXP:11" info="Cortex-M33, 320kB on-chip SRAM, 640kB on-chip Flash">
+    <package info="Device Family Pack for LPC55S69" name="LPC55S69_DFP" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="11.0.0"/>
+    <processor Dclock="100000000" Dcore="Cortex-M33" DcoreVersion="r0p3" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" DnumInterrupts="60" DnumSauRegions="8" Dtz="TZ" Pname="cm33_core0"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rx" info="Non-secure Application CODE section" name="CODE_NS" security="n" shared="1" size="0xF800" start="0x00030400" startup="1" type="ROM"/>
+      <memory access="rw" info="DATA section" name="DATA_NS_" security="n" size="0x00022000" start="0x20020000" type="RAM"/>
+      <memory access="rw" info="MSP STACK section" name="STACK_MSP_NS" security="n" size="0x00000400" start="0x20042000" type="RAM"/>
+      <memory access="rw" info="PSP STACK section" name="STACK_PSP_NS" security="n" size="0x00000C00" start="0x20042400" type="RAM"/>
+      <memory access="rw" info="HEAP section" name="HEAP_NS" security="n" size="0x00001000" start="0x20043000" type="RAM"/>
+      <memory access="rwx" info="SRAMX" name="SRAMX" security="" size="0x00008000" start="0x04000000" type="RAM"/>
+      <memory access="rw" info="USB SRAM" name="USB_SRAM" security="" size="0x00004000" start="0x40100000" type="RAM"/>
+      <mpc blk_size="0x8000" info="Flash" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE" size="0x000A0000" start="0x00000000" type="sp"/>
+      <mpc blk_size="0x1000" info="Boot ROM" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE" size="0x00020000" start="0x03000000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAMX" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAMX[0].MEM_RULE" size="0x00008000" start="0x04000000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAM Bank 0" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAM0[0].MEM_RULE" size="0x00010000" start="0x20000000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAM Bank 1" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAM1[0].MEM_RULE" size="0x00010000" start="0x20010000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAM Bank 2" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAM2[0].MEM_RULE" size="0x00010000" start="0x20020000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAM Bank 3" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAM3[0].MEM_RULE" size="0x00010000" start="0x20030000" type="sp"/>
+      <mpc blk_size="0x1000" info="SRAM Bank 4" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAM4[0].MEM_RULE" size="0x00004000" start="0x20040000" type="sp"/>
+      <mpc blk_size="0x1000" info="USB SRAM" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_USB_HS[0].MEM_RULE" size="0x00004000" start="0x40100000" type="sp"/>
+    </memories>
+    <peripherals/>
+    <sau_init>
+      <region security="n" size="0x10000000" start="0x40000000"/>
+    </sau_init>
+  </resources>
+</rzone>
