@@ -17,73 +17,13 @@
 #ifndef __TARGET_CFG_H__
 #define __TARGET_CFG_H__
 
+#include <stdint.h>
+#include <stdbool.h>
 #include "tfm_peripherals_def.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * \brief Defines peripheral identifiers
- */
-enum periph_id_e
-{
-    PERIPHERAL_NONE = -1,
-    PERIPHERAL_SYSCON = 0,
-    PERIPHERAL_IOCON,
-    PERIPHERAL_GINT0,
-    PERIPHERAL_GINT1,
-    PERIPHERAL_PINT,
-    PERIPHERAL_SEC_PINT,
-    PERIPHERAL_INPUTMUX,
-    PERIPHERAL_CTIMER0,
-    PERIPHERAL_CTIMER1,
-    PERIPHERAL_WWDT,
-    PERIPHERAL_MRT,
-    PERIPHERAL_UTICK,
-    PERIPHERAL_ANACTRL,
-    PERIPHERAL_PMC,
-    PERIPHERAL_SYSCTRL,
-    PERIPHERAL_CTIMER2,
-    PERIPHERAL_CTIMER3,
-    PERIPHERAL_CTIMER4,
-    PERIPHERAL_RTC,
-    PERIPHERAL_OSEVENT,
-    PERIPHERAL_FLASH_CTRL,
-    PERIPHERAL_PRINCE,
-    PERIPHERAL_USBHPHY,
-    PERIPHERAL_RNG,
-    PERIPHERAL_PUF,
-    PERIPHERAL_PLU,
-    PERIPHERAL_ROMPC,
-    PERIPHERAL_DMA0,
-    PERIPHERAL_FS_USB_DEV,
-    PERIPHERAL_SCT,
-    PERIPHERAL_FLEXCOMM0,
-    PERIPHERAL_FLEXCOMM1,
-    PERIPHERAL_FLEXCOMM2,
-    PERIPHERAL_FLEXCOMM3,
-    PERIPHERAL_FLEXCOMM4,
-    PERIPHERAL_MAILBOX,
-    PERIPHERAL_GPIO0,
-    PERIPHERAL_USB_HS_DEV,
-    PERIPHERAL_CRC,
-    PERIPHERAL_FLEXCOMM5,
-    PERIPHERAL_FLEXCOMM6,
-    PERIPHERAL_FLEXCOMM7,
-    PERIPHERAL_SDIO,
-    PERIPHERAL_DBG_MAILBOX,
-    PERIPHERAL_HS_LSPI,
-    PERIPHERAL_ADC0,
-    PERIPHERAL_USB_FS_HOST,
-    PERIPHERAL_USB_HS_HOST,
-    PERIPHERAL_HASH,
-    PERIPHERAL_CASPER,
-    PERIPHERAL_PQ,
-    PERIPHERAL_DMA1,
-    PERIPHERAL_GPIO1,
-    PERIPHERAL_AHB_SEC_CTRL
-};
 
 /**
  * \brief Store the addresses of memory regions
@@ -105,40 +45,30 @@ struct memory_region_limits {
  */
 struct tfm_spm_partition_platform_data_t
 {
-    uint32_t         periph_start;
-    uint32_t         periph_limit;
-    enum periph_id_e periph_id;
+    uint32_t periph_start;
+    uint32_t periph_limit;
+    volatile uint32_t *periph_ppc_bank; /* Secure control register address */
+    uint32_t periph_ppc_loc;            /* Position in the secure control register */
 };
 
 /**
  * \brief Configures the Memory Protection Controller.
+ *
+ * \return  Returns error code.
  */
-void mpc_init_cfg(void);
+int32_t ahb_secure_control_memory_init(void);
 
 /**
  * \brief Configures the Peripheral Protection Controller.
+ *
+ * \return  Returns error code.
  */
-void ppc_init_cfg(void);
+int32_t ahb_secure_control_peripheral_init(void);
 
 /**
- * \brief Restict access to peripheral to secure
+ * \brief Restrict access to peripheral to secure
  */
-void ppc_configure_to_secure(enum periph_id_e periph_id);
-
-/**
- * \brief Allow non-secure access to peripheral
- */
-void ppc_configure_to_non_secure(enum periph_id_e periph_id);
-
-/**
- * \brief Enable secure unprivileged access to peripheral
- */
-void ppc_en_secure_unpriv(enum periph_id_e periph_id);
-
-/**
- * \brief Clear secure unprivileged access to peripheral
- */
-void ppc_clr_secure_unpriv(enum periph_id_e periph_id);
+void ppc_configure_to_secure(volatile uint32_t *bank, uint32_t pos, bool privileged);
 
 /**
  * \brief Configures SAU and IDAU.

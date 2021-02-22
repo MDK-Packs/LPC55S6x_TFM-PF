@@ -11,22 +11,23 @@
       <assign memory="STACK_PSP_NS"/>
       <assign memory="HEAP_NS"/>
       <assign memory="SRAMX"/>
-      <assign memory="USB_SRAM"/>
     </zone>
   </zones>
   <partition>
-    <memory access="rx" info="Non-secure FLASH for CODE execution" name="CODE_NS" privilege="" security="n" size="0x00040000" start="0x00030000" startup="1" type="ROM"/>
     <memory access="rx" info="Boot ROM" name="ROM" security="" size="0x00020000" start="0x03000000" type="ROM"/>
-    <memory access="rw" info="Non-secure RAM for DATA section" name="DATA_NS" privilege="" security="n" size="0x00024000" start="0x20020000" type="RAM"/>
+    <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
     <memory info="DATA section" name="DATA_NS_" offset="0x00000000" parent="DATA_NS" size="0x00022000"/>
     <memory fixed="1" info="MSP STACK section" name="STACK_MSP_NS" offset="0x00022000" parent="DATA_NS" size="0x00000400"/>
     <memory fixed="1" info="PSP STACK section" name="STACK_PSP_NS" offset="0x00022400" parent="DATA_NS" size="0x00000C00"/>
     <memory fixed="1" info="HEAP section" name="HEAP_NS" offset="0x00023000" parent="DATA_NS" size="0x00001000"/>
-    <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
-    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM1" privilege="" security="n" size="0x1000" start="0x40087000" start_s="0x50087000"/>
   </partition>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="n" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>

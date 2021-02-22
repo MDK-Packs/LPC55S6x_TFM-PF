@@ -7,12 +7,11 @@
   </device>
   <resources>
     <memories>
-      <memory access="rx" info="Non-secure FLASH for CODE execution" name="CODE_NS" privilege="" security="n" size="0x00040000" start="0x00030000" startup="1" type="ROM"/>
+      <memory access="rx" info="Non-secure FLASH for CODE execution" name="CODE_NS" privilege="" security="n" size="0x00058000" start="0x00030000" startup="1" type="ROM"/>
       <memory access="rw" info="Non-secure RAM for DATA section" name="DATA_NS" privilege="" security="n" size="0x00024000" start="0x20020000" type="RAM"/>
-      <memory access="rwx" info="SRAMX" name="SRAMX" security="" size="0x00008000" start="0x04000000" type="RAM"/>
-      <memory access="rw" info="USB SRAM" name="USB_SRAM" security="" size="0x00004000" start="0x40100000" type="RAM"/>
-      <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
-      <memory access="rx" info="Boot ROM" name="ROM" security="" size="0x00020000" start="0x03000000" type="ROM"/>
+      <memory access="rwx" info="SRAMX" name="SRAMX" size="0x00008000" start="0x04000000" type="RAM"/>
+      <memory access="rx" info="Flash FFR" name="FLASH_FFR" size="0x00002000" start="0x0009DE00" type="ROM"/>
+      <memory access="rx" info="Boot ROM" name="ROM" size="0x00020000" start="0x03000000" type="ROM"/>
       <mpc blk_size="0x8000" info="Flash" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE" size="0x000A0000" start="0x00000000" type="sp"/>
       <mpc blk_size="0x1000" info="Boot ROM" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE" size="0x00020000" start="0x03000000" type="sp"/>
       <mpc blk_size="0x1000" info="SRAMX" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_RAMX[0].MEM_RULE" size="0x00008000" start="0x04000000" type="sp"/>

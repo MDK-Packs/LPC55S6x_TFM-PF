@@ -15,9 +15,37 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Non-secure Image Trailer for Bootloader</info>
-      <name>TRAILER_NS</name>
-      <physical>0x0003FC00</physical>
+      <info>Non-secure Application CODE section</info>
+      <name>CODE_NS</name>
+      <physical>0x00030400</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00017800</size>
+      <start>0x00030400</start>
+      <startup>1</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Non-secure Image Header for Bootloader</info>
+      <name>HEADER_NS</name>
+      <physical>0x00030000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -29,37 +57,9 @@
       </security>
       <shared>1</shared>
       <size>0x400</size>
-      <start>0x0003FC00</start>
+      <start>0x00030000</start>
       <startup>0</startup>
       <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Non-secure Application DATA section</info>
-      <name>DATA_NS</name>
-      <physical>0x20020000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x00024000</size>
-      <start>0x20020000</start>
-      <startup>0</startup>
-      <type>RAM</type>
       <uninit>0</uninit>
     </memory>
     <memory>
@@ -99,79 +99,51 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Flash FFR</info>
-      <name>FLASH_FFR</name>
-      <physical>0x0009DE00</physical>
+      <info>Non-secure Image Trailer for Bootloader</info>
+      <name>TRAILER_NS</name>
+      <physical>0x00047C00</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
       </privilege>
       <security>
         <s>0</s>
-        <n>0</n>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00000400</size>
+      <start>0x00047C00</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Non-secure Application DATA section</info>
+      <name>DATA_NS</name>
+      <physical>0x20020000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x00002000</size>
-      <start>0x0009DE00</start>
+      <size>0x00024000</size>
+      <start>0x20020000</start>
       <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Non-secure Image Header for Bootloader</info>
-      <name>HEADER_NS</name>
-      <physical>0x00030000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0x400</size>
-      <start>0x00030000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Non-secure Application CODE section</info>
-      <name>CODE_NS</name>
-      <physical>0x00030400</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0xF800</size>
-      <start>0x00030400</start>
-      <startup>1</startup>
-      <type>ROM</type>
+      <type>RAM</type>
       <uninit>0</uninit>
     </memory>
     <memory>
@@ -206,14 +178,14 @@
       <access>
         <p>0</p>
         <r>1</r>
-        <w>1</w>
-        <x>0</x>
+        <w>0</w>
+        <x>1</x>
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>USB SRAM</info>
-      <name>USB_SRAM</name>
-      <physical>0x40100000</physical>
+      <info>Flash FFR</info>
+      <name>FLASH_FFR</name>
+      <physical>0x0009DE00</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -224,10 +196,10 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x00004000</size>
-      <start>0x40100000</start>
+      <size>0x00002000</size>
+      <start>0x0009DE00</start>
       <startup>0</startup>
-      <type>RAM</type>
+      <type>ROM</type>
       <uninit>0</uninit>
     </memory>
     <mpc_setup>
@@ -260,7 +232,7 @@
       <bit_comment/>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment/>
+      <bit_comment>memory:CODE_NS</bit_comment>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
       <bit_comment/>
@@ -687,19 +659,19 @@
       <type>sp</type>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment>memory:USB_SRAM</bit_comment>
+      <bit_comment/>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment>memory:USB_SRAM</bit_comment>
+      <bit_comment/>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment>memory:USB_SRAM</bit_comment>
+      <bit_comment/>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment>memory:USB_SRAM</bit_comment>
+      <bit_comment/>
     </mpc_setup>
     <sau>
-      <end>0x0003FBE0</end>
+      <end>0x00047BE0</end>
       <info>memory:CODE_NS</info>
       <nsc>0</nsc>
       <start>0x00030400</start>
@@ -721,12 +693,6 @@
       <info>region</info>
       <nsc>0</nsc>
       <start>0x40000000</start>
-    </sau>
-    <sau>
-      <end>0x40103FE0</end>
-      <info>memory:USB_SRAM</info>
-      <nsc>0</nsc>
-      <start>0x40100000</start>
     </sau>
     <peripheral>
       <access>
@@ -752,6 +718,163 @@
       <shared>0</shared>
       <size>0x0550</size>
       <start>0x40085000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>I/O Pin Configuration</info>
+      <name>IOCON</name>
+      <physical>0x40001000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x0100</size>
+      <start>0x40001000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Hi-speed SPI Interface</info>
+      <name>SPI8</name>
+      <physical>0x4009F000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x4009F000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <group>GINT</group>
+      <info>Group GPIO Input Interrupt 1</info>
+      <name>GINT1</name>
+      <physical>0x40003000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0048</size>
+      <start>0x40003000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>OS Event Timer</info>
+      <name>OSEVTIMER</name>
+      <physical>0x4002D000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0020</size>
+      <start>0x4002D000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>PowerQuad DSP Coprocessor and Accelerator</info>
+      <name>POWERQUAD</name>
+      <physical>0x40150000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0260</size>
+      <start>0x40150000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>PRINCE dynamic encrypt/decrypt</info>
+      <name>PRINCE</name>
+      <physical>0x40035000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0040</size>
+      <start>0x40035000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -790,88 +913,10 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>I/O Pin Configuration</info>
-      <name>IOCON</name>
-      <physical>0x40001000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0x0100</size>
-      <start>0x40001000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>General Purpose I/O</info>
-      <name>GPIO</name>
-      <physical>0x4008C000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x2490</size>
-      <start>0x4008C000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>USB1 High-speed Host Controller</info>
-      <name>USBHSH</name>
-      <physical>0x400A3000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0054</size>
-      <start>0x400A3000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
       <group>FLEXCOMM</group>
       <info>configurable as I2C, I2S, SPI, or USART</info>
-      <name>FLEXCOMM1</name>
-      <physical>0x40087000</physical>
+      <name>FLEXCOMM4</name>
+      <physical>0x4008A000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -883,7 +928,7 @@
       </security>
       <shared>0</shared>
       <size>0x1000</size>
-      <start>0x40087000</start>
+      <start>0x4008A000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -922,215 +967,6 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <group>CTIMER</group>
-      <info>Standard Counter/Timer 1</info>
-      <name>CTIMER1</name>
-      <physical>0x40009000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0088</size>
-      <start>0x40009000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Real-Time Clock</info>
-      <name>RTC</name>
-      <physical>0x4002C000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0060</size>
-      <start>0x4002C000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Micro-Tick Timer</info>
-      <name>UTICK</name>
-      <physical>0x4000E000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0020</size>
-      <start>0x4000E000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Debug Mailbox</info>
-      <name>DGBMAILBOX</name>
-      <physical>0x4009C000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0100</size>
-      <start>0x4009C000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Input Multiplexing</info>
-      <name>INPUTMUX</name>
-      <physical>0x40006000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x07B4</size>
-      <start>0x40006000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>USB1 High-speed PHY</info>
-      <name>USBPHY</name>
-      <physical>0x40038000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0110</size>
-      <start>0x40038000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>PowerQuad DSP Coprocessor and Accelerator</info>
-      <name>POWERQUAD</name>
-      <physical>0x40150000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0260</size>
-      <start>0x40150000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>ADC Controller</info>
-      <name>ADC</name>
-      <physical>0x400A0000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x400A0000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
       <info>USB0 Full-speed Host Controller</info>
       <name>USBFSH</name>
       <physical>0x400A2000</physical>
@@ -1146,33 +982,6 @@
       <shared>0</shared>
       <size>0x0060</size>
       <start>0x400A2000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>CTIMER</group>
-      <info>Standard Counter/Timer 2</info>
-      <name>CTIMER2</name>
-      <physical>0x40028000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0088</size>
-      <start>0x40028000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1236,9 +1045,10 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Flash Controller</info>
-      <name>FLASH</name>
-      <physical>0x40034000</physical>
+      <group>FLEXCOMM</group>
+      <info>configurable as I2C, I2S, SPI, or USART</info>
+      <name>FLEXCOMM0</name>
+      <physical>0x40086000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1248,9 +1058,9 @@
         <n>1</n>
         <c>0</c>
       </security>
-      <shared>1</shared>
+      <shared>0</shared>
       <size>0x1000</size>
-      <start>0x40034000</start>
+      <start>0x40086000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1289,6 +1099,32 @@
       </access>
       <dma>0</dma>
       <external>0</external>
+      <info>USB1 High-speed Device Controller</info>
+      <name>USBHSD</name>
+      <physical>0x40094000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0038</size>
+      <start>0x40094000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
       <group>CTIMER</group>
       <info>Standard Counter/Timer 3</info>
       <name>CTIMER3</name>
@@ -1305,137 +1141,6 @@
       <shared>0</shared>
       <size>0x0088</size>
       <start>0x40029000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Sysctl (I2S signal sharing)</info>
-      <name>SYSCTL</name>
-      <physical>0x40023000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x40023000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Power Management</info>
-      <name>PMC</name>
-      <physical>0x40020000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0x00CC</size>
-      <start>0x40020000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>CTIMER</group>
-      <info>Standard Counter/Timer 0</info>
-      <name>CTIMER0</name>
-      <physical>0x40008000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0088</size>
-      <start>0x40008000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Pin Interrupt and Pattern Match</info>
-      <name>PINT</name>
-      <physical>0x40004000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0034</size>
-      <start>0x40004000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>CRC Engine</info>
-      <name>CRC_ENGINE</name>
-      <physical>0x40095000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x000C</size>
-      <start>0x40095000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1474,6 +1179,243 @@
       </access>
       <dma>0</dma>
       <external>0</external>
+      <group>FLEXCOMM</group>
+      <info>configurable as I2C, I2S, SPI, or USART</info>
+      <name>FLEXCOMM2</name>
+      <physical>0x40088000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x40088000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Sysctl (I2S signal sharing)</info>
+      <name>SYSCTL</name>
+      <physical>0x40023000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x40023000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Input Multiplexing</info>
+      <name>INPUTMUX</name>
+      <physical>0x40006000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x07B4</size>
+      <start>0x40006000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Syscon</info>
+      <name>SYSCON</name>
+      <physical>0x40000000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x1000</size>
+      <start>0x40000000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>ADC Controller</info>
+      <name>ADC</name>
+      <physical>0x400A0000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x400A0000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Power Management</info>
+      <name>PMC</name>
+      <physical>0x40020000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00CC</size>
+      <start>0x40020000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>SD/MMC</info>
+      <name>SDMMC</name>
+      <physical>0x4009B000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x4009B000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <group>FLEXCOMM</group>
+      <info>configurable as I2C, I2S, SPI, or USART</info>
+      <name>FLEXCOMM1</name>
+      <physical>0x40087000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x1000</size>
+      <start>0x40087000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <group>CTIMER</group>
+      <info>Standard Counter/Timer 2</info>
+      <name>CTIMER2</name>
+      <physical>0x40028000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0088</size>
+      <start>0x40028000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
       <info>Multi-Rate Timer</info>
       <name>MRT</name>
       <physical>0x4000D000</physical>
@@ -1500,9 +1442,9 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Analog Control</info>
-      <name>ANACTRL</name>
-      <physical>0x40013000</physical>
+      <info>General Purpose I/O</info>
+      <name>GPIO</name>
+      <physical>0x4008C000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1512,9 +1454,9 @@
         <n>1</n>
         <c>0</c>
       </security>
-      <shared>1</shared>
-      <size>0x010C</size>
-      <start>0x40013000</start>
+      <shared>0</shared>
+      <size>0x2490</size>
+      <start>0x4008C000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1526,9 +1468,88 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>OS Event Timer</info>
-      <name>OSEVTIMER</name>
-      <physical>0x4002D000</physical>
+      <info>Pin Interrupt and Pattern Match</info>
+      <name>PINT</name>
+      <physical>0x40004000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0034</size>
+      <start>0x40004000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <group>CTIMER</group>
+      <info>Standard Counter/Timer 0</info>
+      <name>CTIMER0</name>
+      <physical>0x40008000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0088</size>
+      <start>0x40008000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>USB1 High-speed PHY</info>
+      <name>USBPHY</name>
+      <physical>0x40038000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0110</size>
+      <start>0x40038000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Micro-Tick Timer</info>
+      <name>UTICK</name>
+      <physical>0x4000E000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1540,7 +1561,33 @@
       </security>
       <shared>0</shared>
       <size>0x0020</size>
-      <start>0x4002D000</start>
+      <start>0x4000E000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Debug Mailbox</info>
+      <name>DGBMAILBOX</name>
+      <physical>0x4009C000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0100</size>
+      <start>0x4009C000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1567,220 +1614,6 @@
       <shared>0</shared>
       <size>0x0C20</size>
       <start>0x4003D000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>FLEXCOMM</group>
-      <info>configurable as I2C, I2S, SPI, or USART</info>
-      <name>FLEXCOMM0</name>
-      <physical>0x40086000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x40086000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>GINT</group>
-      <info>Group GPIO Input Interrupt 1</info>
-      <name>GINT1</name>
-      <physical>0x40003000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0048</size>
-      <start>0x40003000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>FLEXCOMM</group>
-      <info>configurable as I2C, I2S, SPI, or USART</info>
-      <name>FLEXCOMM4</name>
-      <physical>0x4008A000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x4008A000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>DMA</group>
-      <info>Secure DMA Controller 1</info>
-      <name>DMA1</name>
-      <physical>0x400A7000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x05FC</size>
-      <start>0x400A7000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>FLEXCOMM</group>
-      <info>configurable as I2C, I2S, SPI, or USART</info>
-      <name>FLEXCOMM7</name>
-      <physical>0x40098000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x40098000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Windowed Watchdog Timer</info>
-      <name>WWDT</name>
-      <physical>0x4000C000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x001C</size>
-      <start>0x4000C000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <group>DMA</group>
-      <info>DMA Controller 0</info>
-      <name>DMA0</name>
-      <physical>0x40082000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x05FC</size>
-      <start>0x40082000</start>
-      <uninit>0</uninit>
-    </peripheral>
-    <peripheral>
-      <access>
-        <p>1</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>USB1 High-speed Device Controller</info>
-      <name>USBHSD</name>
-      <physical>0x40094000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0038</size>
-      <start>0x40094000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1819,9 +1652,63 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Syscon</info>
-      <name>SYSCON</name>
-      <physical>0x40000000</physical>
+      <group>DMA</group>
+      <info>Secure DMA Controller 1</info>
+      <name>DMA1</name>
+      <physical>0x400A7000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x05FC</size>
+      <start>0x400A7000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <group>DMA</group>
+      <info>DMA Controller 0</info>
+      <name>DMA0</name>
+      <physical>0x40082000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x05FC</size>
+      <start>0x40082000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Flash Controller</info>
+      <name>FLASH</name>
+      <physical>0x40034000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1833,7 +1720,7 @@
       </security>
       <shared>1</shared>
       <size>0x1000</size>
-      <start>0x40000000</start>
+      <start>0x40034000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1845,9 +1732,9 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>SD/MMC</info>
-      <name>SDMMC</name>
-      <physical>0x4009B000</physical>
+      <info>CRC Engine</info>
+      <name>CRC_ENGINE</name>
+      <physical>0x40095000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1858,8 +1745,8 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x4009B000</start>
+      <size>0x000C</size>
+      <start>0x40095000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1871,9 +1758,35 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Hi-speed SPI Interface</info>
-      <name>SPI8</name>
-      <physical>0x4009F000</physical>
+      <info>Analog Control</info>
+      <name>ANACTRL</name>
+      <physical>0x40013000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x010C</size>
+      <start>0x40013000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>USB1 High-speed Host Controller</info>
+      <name>USBHSH</name>
+      <physical>0x400A3000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1884,8 +1797,60 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x1000</size>
-      <start>0x4009F000</start>
+      <size>0x0054</size>
+      <start>0x400A3000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Windowed Watchdog Timer</info>
+      <name>WWDT</name>
+      <physical>0x4000C000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x001C</size>
+      <start>0x4000C000</start>
+      <uninit>0</uninit>
+    </peripheral>
+    <peripheral>
+      <access>
+        <p>1</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Real-Time Clock</info>
+      <name>RTC</name>
+      <physical>0x4002C000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0060</size>
+      <start>0x4002C000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1899,8 +1864,8 @@
       <external>0</external>
       <group>FLEXCOMM</group>
       <info>configurable as I2C, I2S, SPI, or USART</info>
-      <name>FLEXCOMM2</name>
-      <physical>0x40088000</physical>
+      <name>FLEXCOMM7</name>
+      <physical>0x40098000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1912,7 +1877,7 @@
       </security>
       <shared>0</shared>
       <size>0x1000</size>
-      <start>0x40088000</start>
+      <start>0x40098000</start>
       <uninit>0</uninit>
     </peripheral>
     <peripheral>
@@ -1924,9 +1889,10 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>PRINCE dynamic encrypt/decrypt</info>
-      <name>PRINCE</name>
-      <physical>0x40035000</physical>
+      <group>CTIMER</group>
+      <info>Standard Counter/Timer 1</info>
+      <name>CTIMER1</name>
+      <physical>0x40009000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -1937,8 +1903,8 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x0040</size>
-      <start>0x40035000</start>
+      <size>0x0088</size>
+      <start>0x40009000</start>
       <uninit>0</uninit>
     </peripheral>
     <interrupt>
@@ -2407,7 +2373,7 @@
         <c>0</c>
       </security>
       <shared>1</shared>
-      <size>0xF800</size>
+      <size>0x00017800</size>
       <start>0x00030400</start>
       <startup>1</startup>
       <type>ROM</type>
@@ -2549,34 +2515,6 @@
       <shared>0</shared>
       <size>0x00008000</size>
       <start>0x04000000</start>
-      <startup>0</startup>
-      <type>RAM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>USB SRAM</info>
-      <name>USB_SRAM</name>
-      <physical>0x40100000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>0</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x00004000</size>
-      <start>0x40100000</start>
       <startup>0</startup>
       <type>RAM</type>
       <uninit>0</uninit>

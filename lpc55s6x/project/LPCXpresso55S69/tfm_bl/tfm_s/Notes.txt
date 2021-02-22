@@ -1,0 +1,104 @@
+How to create the TF-M Secure Firmware
+--------------------------------------
+
+uVision:
+ - create new project tfm_s
+ -- select device NXP LPC55S69JBD100:cm33_core0
+ -- set target name LPCXpresso55S69
+ -- Target Options - Target - Code Generation - Software Model: Secure Mode
+ -- Target Options - C/C++ - Warnings: AC5-like Warnings
+ -- Target Options - Output - Create HEX file
+ -- Target Options - User - Run After Build: image.bat (signing image)
+ -- Target Options - Utilities - Init File: flash.ini 
+ -- RTE
+ --- select TFM:Core (SFN or IPC variant)
+ --- select TFM:Secure Service:* as needed
+ --- select TFM Platform:* required components
+ --- select Security:mbed TLS
+ --- select CMSIS Driver:Flash:Custom
+ --- select CMSIS Driver:USART:Custom
+ --- select CMSIS:CORE
+ --- select Board Support:SDK Project Template:project_template variant:LPC55S69
+ --- select Device:SDK Drivers:iap1
+ --- resolve dependencies
+ -- add SystemInit.c module with SystemInitHook function (Board Clock and Pin configuration)
+    #include "board.h"
+    #include "pin_mux.h"
+    void SystemInitHook (void) {
+      CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
+      BOARD_InitPins();
+      BOARD_InitBootClocks();
+    }
+ -- add Flash Driver (taken from NXP)
+ -- add USART Driver (output redirected to NXP USART HAL)
+ --- user code template (empty implementation)
+ --- add include headers:
+     #include "fsl_usart.h"
+ --- update Initialize function
+     int32_t ARM_USART_Initialize(ARM_USART_SignalEvent_t cb_event)
+     {
+         usart_config_t config;
+         USART_GetDefaultConfig(&config);
+         config.baudRate_Bps    = 115200U;
+         config.parityMode      = kUSART_ParityDisabled;
+         config.stopBitCount    = kUSART_OneStopBit;
+         config.bitCountPerChar = kUSART_8BitsPerChar;
+         config.enableRx        = false;
+         config.enableTx        = true;
+         USART_Init(USART0, &config, 12000000U);
+         return ARM_DRIVER_OK;
+     }
+ --- update Send function
+     int32_t ARM_USART_Send(const void *data, uint32_t num)
+     {
+         USART_WriteBlocking(USART0, data, num);
+         return ARM_DRIVER_OK;
+     }
+ --- rename exported driver to Driver_USART1 (add 1 index)
+ -- update Board Support:board.c
+ --- correct bug: change BOARD_DEBUG_UART_BASEADDR to BOARD_DEBUG_UART_INSTANCE
+ -- disable Device:Startup component and add following files from DFP to the project:
+ --- LPC55S69_cm33_Core0.S
+ --- system_LPC55S69_cm33_core0.c
+ -- update LPC55S69_cm33_Core0.S (startup file)
+ --- rename section .isr_vector to RESET
+ --- Vector table:
+ ---- change Image$$ARM_LIB_STACK$$ZI$$Limit to Image$$ARM_LIB_STACK_MSP$$ZI$$Limit
+ --- Reset Handler:
+ ---- update MSPLIM setup:
+      ldr   r0, =Image$$ARM_LIB_STACK_MSP$$ZI$$Base
+ ---- remove unmask interrupts:
+      cpsie i                 /* Unmask interrupts */
+ ---- add PSP setup and switch to PSP before branching to __main
+      ldr   r0, =Image$$ARM_LIB_STACK$$ZI$$Limit
+      msr   psp, r0
+      ldr   r0, =Image$$ARM_LIB_STACK$$ZI$$Base
+      msr   psplim, r0
+      mrs   r0, control       /* Get control value */
+      orr   r0, r0, #2        /* Select switch to PSP */
+      msr   control, r0
+ -- setup linker:
+ --- scatter file: tfm_common_s.sct
+ --- options:
+     --import_cmse_lib_out="Objects/tfm_s_CMSE_Lib.o"
+     --predefine="-include tfm_config.h"
+     --predefine="-include tfm_config_rte.h"
+     --predefine="-IRTE/_LPCXpresso55S69/"
+     --predefine="-IRTE/TFM_Platform/LPC55S69JBD100_cm33_core0/"
+     --diag_suppress=L6312,L6314,L6329
+ -- select Debug adapter: CMSIS-DAP ARMv8M
+ -- select Debug script (load Non-secure image) and deselect Run to main()
+ -- optionally update CMSIS_Zone generated files:
+ --- tz_sau_nvic.c, tz_mpc_ppc.c
+ --- mem_layout.h
+
+MCUXpresso:
+ - create and update MCUXpresso project
+ -- open MCUXpresso, create .mex project based on uVision TF-M Secure project and update:
+ --- Pins:
+ ---- Route Pin#92: FLEXCOMM0, RXD_SDA_MOSI_DATA
+ ---- Route Pin#94: FLEXCOMM0, TXD_SCL_MISO_WS
+ --- Clock:
+ ---- called by initialization: BOARD_BootClockFROHF96M
+ ---- BOARD_BootClockFROHF96M:
+ ----- FXCOM0 clock = 12 MHz [FRO 12 MHz * 256 / 256]

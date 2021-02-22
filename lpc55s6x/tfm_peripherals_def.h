@@ -11,8 +11,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#define CTIMER                  CTIMER2                     /* Timer 2 */
+#define CTIMER_CLK_FREQ         CLOCK_GetCTimerClkFreq(2U)
+#define CTIMER_CLK_ATTACH       kFRO_HF_to_CTIMER2
+#define CTIMER_IRQ_HANDLER      CTIMER2_IRQHandler
+#define TFM_TIMER0_IRQ          CTIMER2_IRQn                /* (tfm_core_irq_signal_data_t->irq_line) */
 
-#define TFM_TIMER0_IRQ    (CTIMER0_IRQn)
+#define CTIMER_NS               CTIMER3                     /* Timer 3 */
+#define CTIMER_NS_CLK_FREQ      CLOCK_GetCTimerClkFreq(3U)
+#define CTIMER_NS_CLK_ATTACH    kFRO_HF_to_CTIMER3
+#define CTIMER_NS_IRQ_HANDLER   CTIMER3_IRQHandler
+#define TFM_TIMER1_IRQ          CTIMER3_IRQn                /* use by tfm_core_test_irq() */
 
 struct tfm_spm_partition_platform_data_t;
 

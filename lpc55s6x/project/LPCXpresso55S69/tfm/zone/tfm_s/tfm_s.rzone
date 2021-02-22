@@ -11,7 +11,7 @@
       <memory access="rx" info="Non-secure callable FLASH for CODE veneer table" name="VENEERS" physical="0x0002F800" security="c" size="0x00000340" start="0x1002F800" type="ROM"/>
       <memory access="rw" info="Secure RAM for DATA section" name="DATA_S" physical="0x20000000" security="s" size="0x20000" start="0x30000000" type="RAM"/>
       <memory access="rx" info="Internal Trusted Storage Area" name="ITS" physical="0x00094000" privilege="" security="s" size="0x00002000" start="0x10094000" type="ROM"/>
-      <memory access="rx" info="Secure Storage Area" name="SST" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
+      <memory access="rx" info="Protected Storage Area" name="PS" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
       <memory access="rx" info="Non-volatile Counters" name="NV_COUNTERS" physical="0x00096000" privilege="" security="s" size="0x00000200" start="0x10096000" type="ROM"/>
       <mpc blk_size="0x8000" info="Flash" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE" size="0x000A0000" start="0x00000000" type="sp"/>
       <mpc blk_size="0x1000" info="Boot ROM" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE" size="0x00020000" start="0x03000000" type="sp"/>

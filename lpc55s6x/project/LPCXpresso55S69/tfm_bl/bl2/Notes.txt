@@ -1,0 +1,74 @@
+How to create the TF-M Bootloader
+---------------------------------
+
+uVision:
+ - create new project
+ -- select device NXP LPC55S69JBD100:cm33_core0
+ -- Target Options - Target - Code Generation - Software Model: Secure Mode
+ -- Target Options - C/C++ - Warnings: AC5-like Warnings
+ -- RTE
+ --- select TFM:Boot
+ --- select TFM Platform:* required components
+ --- select Security:mbed TLS
+ --- select CMSIS Driver:Flash:Custom
+ --- select CMSIS Driver:USART:Custom
+ --- select CMSIS:CORE
+ --- select Board Support:SDK Project Template:project_template variant:LPC55S69
+ --- select Device:SDK Drivers:iap1
+ --- resolve dependencies
+ -- update mbedCrypto configuration: mcuboot-mbedtls-cfg.h
+ --- add: #include "bl2_config.h"
+ -- add SystemInit.c module with SystemInitHook function (Board Clock and Pin configuration)
+    #include "board.h"
+    #include "pin_mux.h"
+    void SystemInitHook (void) {
+      CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
+      BOARD_InitPins();
+      BOARD_InitBootClocks();
+    }
+ -- add Flash Driver (taken from NXP)
+ -- add USART Driver (output redirected to NXP USART HAL)
+ --- user code template (empty implementation)
+ --- add include headers:
+     #include "fsl_usart.h"
+ --- update Initialize function
+     int32_t ARM_USART_Initialize(ARM_USART_SignalEvent_t cb_event)
+     {
+         usart_config_t config;
+         USART_GetDefaultConfig(&config);
+         config.baudRate_Bps    = 115200U;
+         config.parityMode      = kUSART_ParityDisabled;
+         config.stopBitCount    = kUSART_OneStopBit;
+         config.bitCountPerChar = kUSART_8BitsPerChar;
+         config.enableRx        = false;
+         config.enableTx        = true;
+         USART_Init(USART0, &config, 12000000U);
+         return ARM_DRIVER_OK;
+     }
+ --- update Send function
+     int32_t ARM_USART_Send(const void *data, uint32_t num)
+     {
+         USART_WriteBlocking(USART0, data, num);
+         return ARM_DRIVER_OK;
+     }
+ --- rename exported driver to Driver_USART1 (add 1 index)
+ -- update Board Support:board.c
+ --- correct bug: change BOARD_DEBUG_UART_BASEADDR to BOARD_DEBUG_UART_INSTANCE
+ -- setup linker:
+ --- scatter file: LPC55S69_cm33_core0_flash.scf
+ ---- update: Stack_Size 0x1800
+ ---- update: Heap_Size  0x1000
+ ---- add: TFM_SHARED_DATA m_data_start ALIGN 32 EMPTY 0x400 {}
+ ---- update: RW_m_data +0 m_data_size-Stack_Size-Heap_Size-0x400
+ -- select Debug adapter: CMSIS-DAP ARMv8M
+
+MCUXpresso:
+ - create and update MCUXpresso project
+ -- open MCUXpresso, create .mex project based on uVision TF-M Secure project and update:
+ --- Pins:
+ ---- Route Pin#92: FLEXCOMM0, RXD_SDA_MOSI_DATA
+ ---- Route Pin#94: FLEXCOMM0, TXD_SCL_MISO_WS
+ --- Clock:
+ ---- called by initialization: BOARD_BootClockFROHF96M
+ ---- BOARD_BootClockFROHF96M:
+ ----- FXCOM0 clock = 12 MHz [FRO 12 MHz * 256 / 256]

@@ -7,20 +7,20 @@
   </device>
   <resources>
     <memories>
-      <memory access="rx" info="Secure Image Primary slot" name="IMAGE_1_S" physical="0x00010000" security="c" shared="1" size="0x20000" start="0x10010000" type="ROM"/>
-      <memory access="rx" info="Non-secure Image Primary slot" name="IMAGE_1_NS" privilege="" security="n" shared="1" size="0x10000" start="0x00030000" type="ROM"/>
+      <memory access="rx" info="Secure Image Primary slot" name="IMAGE_1_S" physical="0x00008000" security="c" shared="1" size="0x00028000" start="0x10008000" type="ROM"/>
+      <memory access="rx" info="Non-secure Image Primary slot" name="IMAGE_1_NS" privilege="" security="n" shared="1" size="0x00018000" start="0x00030000" type="ROM"/>
       <memory access="rx" info="Internal Trusted Storage Area" name="ITS" physical="0x00094000" privilege="" security="s" size="0x00002000" start="0x10094000" type="ROM"/>
-      <memory access="rx" info="Secure Storage area" name="SST" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
+      <memory access="rx" info="Protected Storage area" name="PS" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
       <memory access="rw" info="SRAM Banks 0-4 (Secure)" name="SRAM_S" physical="0x20000000" security="s" shared="1" size="0x00044000" start="0x30000000" type="RAM"/>
-      <memory access="rw" info="SRAM Banks 0-4" name="SRAM" security="" size="0x00044000" start="0x20000000" type="RAM"/>
+      <memory access="rw" info="SRAM Banks 0-4" name="SRAM" size="0x00044000" start="0x20000000" type="RAM"/>
       <memory access="rx" info="Non-volatile Counters" name="NV_COUNTERS" physical="0x00096000" privilege="" security="s" shared="1" size="0x00000200" start="0x10096000" type="ROM"/>
-      <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
+      <memory access="rx" info="Flash FFR" name="FLASH_FFR" size="0x00002000" start="0x0009DE00" type="ROM"/>
       <memory access="rx" info="Flash FFR (Secure)" name="FLASH_FFR_S" physical="0x0009DE00" security="c" size="0x00002000" start="0x1009DE00" type="ROM"/>
-      <memory access="rx" info="Boot ROM" name="ROM" security="" size="0x00020000" start="0x03000000" type="ROM"/>
+      <memory access="rx" info="Boot ROM" name="ROM" size="0x00020000" start="0x03000000" type="ROM"/>
       <memory access="rx" info="Boot ROM (Secure)" name="ROM_S" physical="0x03000000" privilege="" security="s" size="0x00020000" start="0x13000000" type="ROM"/>
-      <memory access="rwx" info="SRAMX" name="SRAMX" security="" size="0x00008000" start="0x04000000" type="RAM"/>
+      <memory access="rwx" info="SRAMX" name="SRAMX" size="0x00008000" start="0x04000000" type="RAM"/>
       <memory access="rwx" info="SRAMX (Secure)" name="SRAMX_S" physical="0x04000000" security="c" size="0x00008000" start="0x14000000" type="RAM"/>
-      <memory access="rw" info="USB SRAM" name="USB_SRAM" security="" size="0x00004000" start="0x40100000" type="RAM"/>
+      <memory access="rw" info="USB SRAM" name="USB_SRAM" size="0x00004000" start="0x40100000" type="RAM"/>
       <memory access="rw" info="USB SRAM (Secure)" name="USB_SRAM_S" physical="0x40100000" security="s" size="0x00004000" start="0x50100000" type="RAM"/>
       <mpc blk_size="0x8000" info="Flash" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE" size="0x000A0000" start="0x00000000" type="sp"/>
       <mpc blk_size="0x1000" info="Boot ROM" name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE" size="0x00020000" start="0x03000000" type="sp"/>

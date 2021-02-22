@@ -10,14 +10,14 @@
       <TargetName>LPCXpresso55S69</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6140000::V6.14::ARMCLANG</pCCUsed>
+      <pCCUsed>6150000::V6.15::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>LPC55S69JBD100:cm33_core0</Device>
           <Vendor>NXP</Vendor>
-          <PackID>NXP.LPC55S69_DFP.12.1.1</PackID>
-          <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
+          <PackID>NXP.LPC55S69_DFP.13.0.0</PackID>
+          <PackURL>https://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>IRAM(0x20000000,0x044000) IRAM2(0x04000000,0x8000) IROM(0x00000000,0x098000) XRAM(0x40100000,0x4000) CPUTYPE("Cortex-M33") FPU3(SFPU) DSP TZ CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -52,7 +52,7 @@
           <OutputName>tfm_ns</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -435,20 +435,46 @@
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </component>
-      <component Cclass="TFM" Cgroup="API" Cvariant="SFN" Cvendor="ARM" Cversion="1.0.0" condition="TFM API">
-        <package name="TFM" schemaVersion="1.6" url="http://www.keil.com/pack/" vendor="ARM" version="2.0.0"/>
+      <component Cclass="TFM" Cgroup="API" Csub="Crypto" Cvendor="ARM" Cversion="1.2.0" condition="TFM API">
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_">
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
+      <component Cclass="TFM" Cgroup="API" Csub="Initial Attestation" Cvendor="ARM" Cversion="1.2.0" condition="TFM API">
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
-          <targetInfo name="LPCXpresso55S69">
-            <asm>
-              <MiscControls>-x assembler-with-cpp</MiscControls>
-            </asm>
-          </targetInfo>
+          <targetInfo name="LPCXpresso55S69"/>
+        </targetInfos>
+      </component>
+      <component Cclass="TFM" Cgroup="API" Csub="Internal Trusted Storage" Cvendor="ARM" Cversion="1.2.0" condition="TFM API">
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="LPCXpresso55S69"/>
+        </targetInfos>
+      </component>
+      <component Cclass="TFM" Cgroup="API" Csub="Protected Storage" Cvendor="ARM" Cversion="1.2.0" condition="TFM API">
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="LPCXpresso55S69"/>
+        </targetInfos>
+      </component>
+      <component Cclass="TFM" Cgroup="Core" Cvariant="SFN" Cvendor="ARM" Cversion="1.2.0" condition="TFM Non-Secure Core">
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="LPCXpresso55S69"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_system" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND_device.LPC55S69_CMSIS">
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
+        <targetInfos>
+          <targetInfo name="LPCXpresso55S69"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33_AND__armclang_OR_iar__AND_device.LPC55S69_system">
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
+        <targetInfos>
+          <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </component>
     </components>
@@ -469,98 +495,56 @@
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" condition="core_id.cm33_core0_AND_core_type.cm33" name="LPC55S69_cm33_core0.h" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0.h</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
-      </file>
-      <file attr="config" category="header" condition="core_id.cm33_core0_AND_core_type.cm33" name="LPC55S69_cm33_core0_features.h" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0_features.h</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
-      </file>
-      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash.scf" version="1.0.0">
+      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash.scf" version="1.1.0">
         <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0_flash.scf</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33_AND__armclang_OR_iar__AND_device.LPC55S69_system"/>
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash_ns.scf" version="1.0.0">
+      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash_ns.scf" version="1.1.0">
         <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0_flash_ns.scf</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33_AND__armclang_OR_iar__AND_device.LPC55S69_system"/>
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash_s.scf" version="1.0.0">
+      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_flash_s.scf" version="1.1.0">
         <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0_flash_s.scf</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33_AND__armclang_OR_iar__AND_device.LPC55S69_system"/>
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_ram.scf" version="1.0.0">
+      <file attr="config" category="linkerScript" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\LPC55S69_cm33_core0_ram.scf" version="1.1.0">
         <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\LPC55S69_cm33_core0_ram.scf</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.LPC55S69_AND_CMSIS_Include_core_cm33_AND__armclang_OR_iar__AND_device.LPC55S69_system"/>
+        <package name="LPC55S69_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="13.0.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" condition="_core_id.cm33_core0_OR_core_id.cm33_core1__AND_core_type.cm33" name="fsl_device_registers.h" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\fsl_device_registers.h</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
+      <file attr="config" category="header" condition="CoreM" name="CMSIS\RTOS2\FreeRTOS\Config\ARMCM\FreeRTOSConfig.h" version="10.2.0">
+        <instance index="0" removed="1">RTE\RTOS\FreeRTOSConfig.h</instance>
+        <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Config" Cvariant="CMSIS RTOS2" Cvendor="ARM" Cversion="10.3.1" condition="FreeRTOS Config CMSIS RTOS2"/>
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="ARM" version="10.3.1"/>
+        <targetInfos/>
       </file>
-      <file attr="config" category="sourceAsm" condition="core_id.cm33_core0_AND_core_type.cm33_AND_mdk" name="arm\startup_LPC55S69_cm33_core0.s" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\startup_LPC55S69_cm33_core0.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
-      </file>
-      <file attr="config" category="sourceC" condition="core_id.cm33_core0_AND_core_type.cm33" name="system_LPC55S69_cm33_core0.c" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\system_LPC55S69_cm33_core0.c</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
-      </file>
-      <file attr="config" category="header" condition="core_id.cm33_core0_AND_core_type.cm33" name="system_LPC55S69_cm33_core0.h" version="1.0.0">
-        <instance index="0">RTE\Device\LPC55S69JBD100_cm33_core0\system_LPC55S69_cm33_core0.h</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.0.0" condition="device.LPC55S69_AND__CMSIS_Include_core_cm33__AND__armclang_OR_iar_"/>
-        <package license="Licenses.txt" name="LPC55S69_DFP" schemaVersion="1.4" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="12.1.1"/>
-        <targetInfos>
-          <targetInfo name="LPCXpresso55S69"/>
-        </targetInfos>
-      </file>
-      <file attr="config" category="header" name="rte\config\non_secure\tfm_config.h" version="1.0.0">
+      <file attr="config" category="header" name="rte\config\non_secure\tfm_config.h" version="1.2.0">
         <instance index="0">RTE\TFM\tfm_config.h</instance>
-        <component Cclass="TFM" Cgroup="API" Cvariant="SFN" Cvendor="ARM" Cversion="1.0.0" condition="TFM API"/>
-        <package name="TFM" schemaVersion="1.6" url="http://www.keil.com/pack/" vendor="ARM" version="2.0.0"/>
+        <component Cclass="TFM" Cgroup="Core" Cvariant="SFN" Cvendor="ARM" Cversion="1.2.0" condition="TFM Non-Secure Core"/>
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
       </file>
-      <file attr="config" category="source" name="rte\config\tfm_config_rte.h" version="1.0.0">
+      <file attr="config" category="source" name="rte\config\tfm_config_rte.h" version="1.2.0">
         <instance index="0">RTE\TFM\tfm_config_rte.h</instance>
-        <component Cclass="TFM" Cgroup="API" Cvariant="SFN" Cvendor="ARM" Cversion="1.0.0" condition="TFM API"/>
-        <package name="TFM" schemaVersion="1.6" url="http://www.keil.com/pack/" vendor="ARM" version="2.0.0"/>
+        <component Cclass="TFM" Cgroup="Core" Cvariant="SFN" Cvendor="ARM" Cversion="1.2.0" condition="TFM Non-Secure Core"/>
+        <package name="TFM" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="LPCXpresso55S69"/>
         </targetInfos>
@@ -572,11 +556,6 @@
     <Layers>
       <Layer>
         <LayName>&lt;Project Info&gt;</LayName>
-        <LayDesc></LayDesc>
-        <LayUrl></LayUrl>
-        <LayKeys></LayKeys>
-        <LayCat></LayCat>
-        <LayLic></LayLic>
         <LayTarg>0</LayTarg>
         <LayPrjMark>1</LayPrjMark>
       </Layer>

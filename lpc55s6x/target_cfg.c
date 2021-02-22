@@ -16,9 +16,11 @@
 
 #include CMSIS_device_header
 #include "tz_config.h"
-#include "target_cfg.h"
 #include "region_defs.h"
+#include "tfm_assert.h"
+#include "target_cfg.h"
 #include "tfm_plat_defs.h"
+#include "tfm_spm_log.h"
 
 /* Macros to pick linker symbols */
 #define REGION(a, b, c) a##b##c
@@ -63,152 +65,25 @@ const struct memory_region_limits memory_regions = {
 
 /* Define Peripherals NS address range for the platform */
 #define PERIPHERALS_BASE_NS_START (0x40000000)
-#define PERIPHERALS_BASE_NS_END   (0x4FFFFFFF)
+#define PERIPHERALS_BASE_NS_END   (0x4010FFFF)
 
 /* To write into AIRCR register, 0x5FA value must be write to the VECTKEY field,
  * otherwise the processor ignores the write.
  */
 #define SCB_AIRCR_WRITE_MASK ((0x5FAUL << SCB_AIRCR_VECTKEY_Pos))
 
-static const struct {
-  volatile uint32_t *addr;
-           uint32_t  pos;
-} periph_data[] =
-{
-  /*PERIPHERAL_SYSCON*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0,  0U },
-  /*PERIPHERAL_IOCON*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0,  4U },
-  /*PERIPHERAL_GINT0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0,  8U },
-  /*PERIPHERAL_GINT1*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0, 12U },
-  /*PERIPHERAL_PINT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0, 16U },
-  /*PERIPHERAL_SEC_PINT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0, 20U },
-  /*PERIPHERAL_INPUTMUX*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL0, 24U },
-
-  /*PERIPHERAL_CTIMER0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL1,  0U },
-  /*PERIPHERAL_CTIMER1*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL1,  4U },
-  /*PERIPHERAL_WWDT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL1, 16U },
-  /*PERIPHERAL_MRT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL1, 20U },
-  /*PERIPHERAL_UTICK*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL1, 24U },
-
-  /*PERIPHERAL_ANACTRL*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE0_MEM_CTRL2, 12U },
-
-  /*PERIPHERAL_PMC*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL0,  0U },
-  /*PERIPHERAL_SYSCTRL*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL0, 12U },
-
-  /*PERIPHERAL_CTIMER2*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1,  0U },
-  /*PERIPHERAL_CTIMER3*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1,  4U },
-  /*PERIPHERAL_CTIMER4*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1,  8U },
-  /*PERIPHERAL_RTC*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1, 16U },
-  /*PERIPHERAL_OSEVENT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1, 20U },
-
-  /*PERIPHERAL_FLASH_CTRL*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL2, 16U },
-  /*PERIPHERAL_PRINCE*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL2, 20U },
-
-  /*PERIPHERAL_USBHPHY*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL3,  0U },
-  /*PERIPHERAL_RNG*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL3,  8U },
-  /*PERIPHERAL_PUF*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL3, 12U },
-  /*PERIPHERAL_PLU*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL3, 20U },
-  /*PERIPHERAL_ROMPC*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[1].SEC_CTRL_APB_BRIDGE1_MEM_CTRL3, 24U },
-
-  /*PERIPHERAL_DMA0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE0_RULE,   8U },
-  /*PERIPHERAL_FS_USB_DEV*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE0_RULE,  16U },
-  /*PERIPHERAL_SCT*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE0_RULE,  20U },
-  /*PERIPHERAL_FLEXCOMM0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE0_RULE,  24U },
-  /*PERIPHERAL_FLEXCOMM1*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE0_RULE,  28U },
-
-  /*PERIPHERAL_FLEXCOMM2*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE1_RULE,   0U },
-  /*PERIPHERAL_FLEXCOMM3*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE1_RULE,   4U },
-  /*PERIPHERAL_FLEXCOMM4*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE1_RULE,   8U },
-  /*PERIPHERAL_MAILBOX*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE1_RULE,  12U },
-  /*PERIPHERAL_GPIO0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT8_SLAVE1_RULE,  16U },
-
-  /*PERIPHERAL_USB_HS_DEV*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE0_RULE,  16U },
-  /*PERIPHERAL_CRC*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE0_RULE,  20U },
-  /*PERIPHERAL_FLEXCOMM5*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE0_RULE,  24U },
-  /*PERIPHERAL_FLEXCOMM6*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE0_RULE,  28U },
-
-  /*PERIPHERAL_FLEXCOMM7*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE1_RULE,   0U },
-  /*PERIPHERAL_SDIO*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE1_RULE,  12U },
-  /*PERIPHERAL_DBG_MAILBOX*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE1_RULE,  16U },
-  /*PERIPHERAL_HS_LSPI*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT9_SLAVE1_RULE,  28U },
-
-  /*PERIPHERAL_ADC0*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE,  0U },
-  /*PERIPHERAL_USB_FS_HOST*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE,  8U },
-  /*PERIPHERAL_USB_HS_HOST*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE, 12U },
-  /*PERIPHERAL_HASH*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE, 16U },
-  /*PERIPHERAL_CASPER*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE, 20U },
-  /*PERIPHERAL_PQ*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE, 24U },
-  /*PERIPHERAL_DMA1*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE0_RULE, 28U },
-
-  /*PERIPHERAL_GPIO1*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE1_RULE,  0U },
-  /*PERIPHERAL_AHB_SEC_CTRL*/
-  { &AHB_SECURE_CTRL->SEC_CTRL_AHB_PORT10[0].SLAVE1_RULE,  4U },
-};
-
 struct tfm_spm_partition_platform_data_t tfm_peripheral_std_uart = {
-  /* FLEXCOMM0 (NS) */
-  0x40086000U,
-  0x40086FFFU,
-  PERIPHERAL_NONE /*PERIPHERAL_FLEXCOMM0*/
+        USART0_BASE_NS,
+        USART0_BASE_NS + 0xFFF,
+        0,
+        0
 };
 
 struct tfm_spm_partition_platform_data_t tfm_peripheral_timer0 = {
-  /* CTIMER0 (NS) */
-  0x40008000U,
-  0x40008FFFU,
-  PERIPHERAL_NONE /*PERIPHERAL_CTIMER0*/
+        CTIMER2_BASE,
+        CTIMER2_BASE + 0xFFF,
+        &(AHB_SECURE_CTRL->SEC_CTRL_APB_BRIDGE[0].SEC_CTRL_APB_BRIDGE1_MEM_CTRL1),
+        AHB_SECURE_CTRL_SEC_CTRL_APB_BRIDGE1_MEM_CTRL1_CTIMER2_RULE_SHIFT
 };
 
 enum tfm_plat_err_t enable_fault_handlers(void)
@@ -241,14 +116,6 @@ enum tfm_plat_err_t system_reset_cfg(void)
 
 enum tfm_plat_err_t init_debug(void)
 {
-//#if defined(DAUTH_NONE)
-//#else
-
-//#if !defined(DAUTH_CHIP_DEFAULT)
-//#error "No debug authentication setting is provided."
-//#endif
-
-//#endif
     return TFM_PLAT_ERR_SUCCESS;
 }
 
@@ -262,15 +129,20 @@ enum tfm_plat_err_t nvic_interrupt_target_state_cfg(void)
 //      NVIC->ITNS[i] = 0xFFFFFFFF;
 //  }
 
-    /* Make sure that Secure VIO is targeted to S state */
+    /* Make sure that MPC and PPC are targeted to S state */
     NVIC_ClearTargetState(SEC_VIO_IRQn);
+
     return TFM_PLAT_ERR_SUCCESS;
 }
 
 /*----------------- NVIC interrupt enabling for S peripherals ----------------*/
 enum tfm_plat_err_t nvic_interrupt_enable(void)
 {
+
+    /* MPC/PPC interrupt enabling */
+
     NVIC_EnableIRQ(SEC_VIO_IRQn);
+
     return TFM_PLAT_ERR_SUCCESS;
 }
 
@@ -283,38 +155,45 @@ void sau_and_idau_cfg(void)
 
 /*------------------- Memory configuration functions -------------------------*/
 
-void mpc_init_cfg(void)
+int32_t ahb_secure_control_memory_init(void)
 {
+    /*
+     * Starts changing actual configuration so issue DMB to ensure every
+     * transaction has completed by now
+     */
+    __DMB();
+
     TZ_Config_MPC();
+
+    /* Add barriers to assure the MPC configuration is done before continue
+     * the execution.
+     */
+    __DSB();
+    __ISB();
+
+    return 0;
 }
 
 /*---------------------- PPC configuration functions -------------------------*/
 
-void ppc_init_cfg(void)
+int32_t ahb_secure_control_peripheral_init(void)
 {
     TZ_Config_PPC();
+
+    return 0;
 }
 
-void ppc_configure_to_non_secure(enum periph_id_e periph_id)
+void ppc_configure_to_secure(volatile uint32_t *bank, uint32_t pos, bool privileged)
 {
-    /* Clear Secure flag for peripheral to enable NS access */
-    *periph_data[periph_id].addr &= ~(2U << (periph_data[periph_id].pos));
-}
-
-void ppc_configure_to_secure(enum periph_id_e periph_id)
-{
-    /* Set Secure flag for peripheral to prevent NS access */
-    *periph_data[periph_id].addr |= 2U << (periph_data[periph_id].pos);
-}
-
-void ppc_en_secure_unpriv(enum periph_id_e periph_id)
-{
-    /* Clear Privilege access flag for peripheral */
-    *periph_data[periph_id].addr &= ~(1U << (periph_data[periph_id].pos));
-}
-
-void ppc_clr_secure_unpriv(enum periph_id_e periph_id)
-{
-    /* Set Privilege access flag for peripheral */
-    *periph_data[periph_id].addr |= 1U << (periph_data[periph_id].pos);
+    /* Clear NS flag for peripheral to prevent NS access */
+    if(bank)
+    {
+        /*  0b00..Non-secure and Non-priviledge user access allowed.
+         *  0b01..Non-secure and Privilege access allowed.
+         *  0b10..Secure and Non-priviledge user access allowed.
+         *  0b11..Secure and Priviledge/Non-priviledge user access allowed.
+         */
+        /* Set to secure and privileged user access 0x3. */
+        *bank = (*bank) | (((privileged == true)?0x3:0x2) << (pos));
+    }
 }

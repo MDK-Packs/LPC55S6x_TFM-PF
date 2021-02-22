@@ -13,27 +13,27 @@ void TZ_Config_MPC(void)
 {
   /* Flash */
   AHB_SECURE_CTRL->SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE[0]=
-      0x00000000U |      
-      0x00000000U |      
-      0x00000200U |      /* memory:HEADER_S, memory:CODE_S */
+      0x00000002U |      /* memory:CODE_BL */
+      0x00000020U |      /* memory:HEADER_S, memory:CODE_S */
+      0x00000200U |      /* memory:CODE_S */
       0x00002000U |      /* memory:CODE_S */
       0x00020000U |      /* memory:CODE_S */
       0x00200000U |      /* memory:CODE_S, memory:VENEERS, memory:TRAILER_S */
       0x00000000U |      /* memory:HEADER_NS, memory:CODE_NS */
-      0x00000000U;       /* memory:CODE_NS, memory:TRAILER_NS */
+      0x00000000U;       /* memory:CODE_NS */
   AHB_SECURE_CTRL->SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE[1]=
-      0x00000000U |      /* memory:IMAGE_2_S */
-      0x00000000U |      /* memory:IMAGE_2_S */
-      0x00000000U |      /* memory:IMAGE_2_S */
-      0x00000000U |      /* memory:IMAGE_2_S */
-      0x00000000U |      /* memory:IMAGE_2_NS */
-      0x00000000U |      /* memory:IMAGE_2_NS */
+      0x00000000U |      /* memory:CODE_NS, memory:TRAILER_NS */
+      0x00000000U |      
+      0x00000000U |      
+      0x00000000U |      
+      0x00000000U |      
+      0x00000000U |      
       0x00000000U |      
       0x00000000U;       
   AHB_SECURE_CTRL->SEC_CTRL_FLASH_ROM[0].SEC_CTRL_FLASH_MEM_RULE[2]=
       0x00000000U |      
       0x00000000U |      
-      0x00000200U |      /* memory:SST, memory:ITS, memory:NV_COUNTERS */
+      0x00000200U |      /* memory:PS, memory:ITS, memory:NV_COUNTERS */
       0x00000000U |      /* memory:FLASH_FFR */
       0x00000000U |      
       0x00000000U |      
@@ -182,10 +182,10 @@ void TZ_Config_MPC(void)
 
   /* USB SRAM */
   AHB_SECURE_CTRL->SEC_CTRL_USB_HS[0].MEM_RULE[0]=
-      0x00000000U |      /* memory:USB_SRAM */
-      0x00000000U |      /* memory:USB_SRAM */
-      0x00000000U |      /* memory:USB_SRAM */
-      0x00000000U |      /* memory:USB_SRAM */
+      0x00000000U |      
+      0x00000000U |      
+      0x00000000U |      
+      0x00000000U |      
       0x00000000U |      
       0x00000000U |      
       0x00000000U |      

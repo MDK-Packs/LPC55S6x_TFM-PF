@@ -4,28 +4,28 @@
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <configure/>
   <partition>
-    <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
-    <memory access="rwx" info="SRAMX" name="SRAMX" security="" size="0x00008000" start="0x04000000" type="RAM"/>
-    <memory access="rw" info="Non-secure Application DATA section" name="DATA_NS" offset="0x00020000" parent="SRAM" privilege="" security="n" size="0x00024000"/>
-    <memory access="rx" info="Boot ROM" name="ROM" security="" size="0x00020000" start="0x03000000" type="ROM"/>
-    <memory access="rw" info="USB SRAM" name="USB_SRAM" security="" size="0x00004000" start="0x40100000" type="RAM"/>
-    <memory access="rx" info="Internal Trusted Storage Area" name="ITS" physical="0x00094000" privilege="" security="s" size="0x00002000" start="0x10094000" type="ROM"/>
     <memory fixed="1" info="Secure Application DATA section" name="DATA_S" offset="0x0" parent="SRAM_S" size="0x20000"/>
+    <memory access="rw" info="USB SRAM" name="USB_SRAM" security="" size="0x00004000" start="0x40100000" type="RAM"/>
     <memory fixed="1" info="Non-secure Image Header for Bootloader" name="HEADER_NS" offset="0x0" parent="IMAGE_1_NS" size="0x400"/>
-    <memory fixed="1" info="Non-secure Application CODE section" name="CODE_NS" offset="0x400" parent="IMAGE_1_NS" size="0xF800" startup="1"/>
-    <memory fixed="1" info="Non-secure Image Trailer for Bootloader" name="TRAILER_NS" offset="0xFC00" parent="IMAGE_1_NS" size="0x400"/>
+    <memory fixed="1" info="Non-secure Application CODE section" name="CODE_NS" offset="0x00000400" parent="IMAGE_1_NS" size="0x00017800" startup="1"/>
+    <memory fixed="1" info="Non-secure Image Trailer for Bootloader" name="TRAILER_NS" offset="0x00017C00" parent="IMAGE_1_NS" size="0x00000400"/>
+    <memory access="rx" info="Boot ROM" name="ROM" security="" size="0x00020000" start="0x03000000" type="ROM"/>
+    <memory access="rw" info="Non-secure Application DATA section" name="DATA_NS" offset="0x00020000" parent="SRAM" privilege="" security="n" size="0x00024000"/>
+    <memory access="rwx" info="SRAMX" name="SRAMX" security="" size="0x00008000" start="0x04000000" type="RAM"/>
     <memory access="r" fixed="1" info="Secure Image Header for Bootloader" name="HEADER_S" offset="0x0" parent="IMAGE_1_S" privilege="" security="s" size="0x400"/>
-    <memory access="rx" fixed="1" info="Secure Application CODE section" name="CODE_S" offset="0x00000400" parent="IMAGE_1_S" privilege="" security="s" size="0x0001F400" startup="1"/>
-    <memory fixed="1" info="Non-secure callable Veneers" name="VENEERS" offset="0x0001F800" parent="IMAGE_1_S" size="0x00000340"/>
-    <memory access="r" fixed="1" info="Secure Image Trailer for Bootloader" name="TRAILER_S" offset="0x1FC00" parent="IMAGE_1_S" security="s" size="0x400"/>
-    <peripheral access="prw" info="Physical Unclonable Function" name="PUF" privilege="" security="s" size="0x0260" start="0x4003B000" start_s="0x5003B000"/>
-    <peripheral access="prw" info="Cryptographic Accelerator" name="CASPER" privilege="" security="s" size="0x1000" start="0x400A5000" start_s="0x500A5000"/>
-    <peripheral access="prw" info="HASH-AES" name="HASH-AES" privilege="" security="s" size="0x00A0" start="0x400A4000" start_s="0x500A4000"/>
-    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM1" size="0x1000" start="0x40087000" start_s="0x50087000"/>
+    <memory access="rx" fixed="1" info="Secure Application CODE section" name="CODE_S" offset="0x00000400" parent="IMAGE_1_S" privilege="" security="s" size="0x00027400" startup="1"/>
+    <memory fixed="1" info="Non-secure callable Veneers" name="VENEERS" offset="0x00027800" parent="IMAGE_1_S" size="0x00000340"/>
+    <memory access="r" fixed="1" info="Secure Image Trailer for Bootloader" name="TRAILER_S" offset="0x00027C00" parent="IMAGE_1_S" security="s" size="0x00000400"/>
+    <memory access="rx" info="Internal Trusted Storage Area" name="ITS" physical="0x00094000" privilege="" security="s" size="0x00002000" start="0x10094000" type="ROM"/>
+    <memory access="rx" info="Flash FFR" name="FLASH_FFR" security="" size="0x00002000" start="0x0009DE00" type="ROM"/>
     <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM0" size="0x1000" start="0x40086000" start_s="0x50086000"/>
+    <peripheral access="prw" group="FLEXCOMM" info="configurable as I2C, I2S, SPI, or USART" name="FLEXCOMM1" size="0x1000" start="0x40087000" start_s="0x50087000"/>
     <peripheral access="prw" info="Secure General Purpose I/O" name="SGPIO" privilege="" security="s" size="0x2490" start="0x400A8000" start_s="0x500A8000"/>
-    <peripheral access="prw" info="Secure Pin Interrupt and Pattern Match" name="SPINT" privilege="" security="s" size="0x0034" start="0x40005000" start_s="0x50005000"/>
+    <peripheral access="prw" info="Cryptographic Accelerator" name="CASPER" privilege="" security="s" size="0x1000" start="0x400A5000" start_s="0x500A5000"/>
     <peripheral access="prw" info="True Random Number Generator" name="RNG" privilege="" security="s" size="0x1000" start="0x4003A000" start_s="0x5003A000"/>
+    <peripheral access="prw" info="Secure Pin Interrupt and Pattern Match" name="SPINT" privilege="" security="s" size="0x0034" start="0x40005000" start_s="0x50005000"/>
+    <peripheral access="prw" info="Physical Unclonable Function" name="PUF" privilege="" security="s" size="0x0260" start="0x4003B000" start_s="0x5003B000"/>
+    <peripheral access="prw" info="HASH-AES" name="HASH-AES" privilege="" security="s" size="0x00A0" start="0x400A4000" start_s="0x500A4000"/>
   </partition>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <zones>
@@ -47,9 +47,9 @@
       <assign peripheral="HASH-AES"/>
       <assign peripheral="CASPER"/>
       <assign peripheral="SGPIO"/>
-      <assign memory="SST"/>
       <assign memory="ITS"/>
       <assign memory="NV_COUNTERS"/>
+      <assign memory="PS"/>
     </zone>
     <zone Pname="cm33_core0" info="" name="tfm_ns" privilege="" security="n">
       <assign memory="CODE_NS"/>
@@ -57,7 +57,6 @@
       <assign memory="HEADER_NS"/>
       <assign memory="TRAILER_NS"/>
       <assign memory="SRAMX"/>
-      <assign memory="USB_SRAM"/>
       <assign group="CTIMER" peripheral="CTIMER2"/>
       <assign group="CTIMER" peripheral="CTIMER1"/>
       <assign group="CTIMER" peripheral="CTIMER3"/>
@@ -108,6 +107,12 @@
       <assign memory="ROM"/>
     </zone>
   </zones>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>

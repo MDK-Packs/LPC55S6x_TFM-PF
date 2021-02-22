@@ -14,18 +14,24 @@
     </zone>
   </zones>
   <partition>
+    <memory access="rx" info="Protected Storage Area" name="PS" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
     <memory fixed="1" info="MSP STACK section" name="STACK_MSP_S" offset="0x0" parent="DATA_S" size="0x800"/>
     <memory fixed="1" info="PSP STACK section" name="STACK_PSP_S" offset="0x800" parent="DATA_S" size="0x800"/>
     <memory fixed="1" info="HEAP section" name="HEAP_S" offset="0x1000" parent="DATA_S" size="0x1000"/>
     <memory info="DATA section" name="DATA_S_" offset="0x00002000" parent="DATA_S" size="0x1E000"/>
-    <memory access="rx" info="Secure Storage Area" name="SST" physical="0x00090000" privilege="" security="s" size="0x00004000" start="0x10090000" type="ROM"/>
-    <memory access="rx" info="Non-volatile Counters" name="NV_COUNTERS" physical="0x00096000" privilege="" security="s" size="0x00000200" start="0x10096000" type="ROM"/>
-    <memory access="rx" info="Internal Trusted Storage Area" name="ITS" physical="0x00094000" privilege="" security="s" size="0x00002000" start="0x10094000" type="ROM"/>
-    <peripheral access="prw" info="AHB Secure Controller" name="AHB_SECURE_CTRL" privilege="" security="s" size="0x1000" start="0x400AC000" start_s="0x500AC000"/>
+    <peripheral access="prw" info="HASH-AES" name="HASH-AES" privilege="" security="s" size="0x00A0" start="0x400A4000" start_s="0x500A4000"/>
+    <peripheral access="prw" info="Physical Unclonable Function" name="PUF" privilege="" security="s" size="0x0260" start="0x4003B000" start_s="0x5003B000"/>
+    <peripheral access="prw" info="Secure Pin Interrupt and Pattern Match" name="SPINT" privilege="" security="s" size="0x0034" start="0x40005000" start_s="0x50005000"/>
+    <peripheral access="prw" info="Cryptographic Accelerator" name="CASPER" privilege="" security="s" size="0x1000" start="0x400A5000" start_s="0x500A5000"/>
+    <peripheral access="prw" info="True Random Number Generator" name="RNG" privilege="" security="s" size="0x1000" start="0x4003A000" start_s="0x5003A000"/>
+    <peripheral access="prw" info="Secure General Purpose I/O" name="SGPIO" privilege="" security="s" size="0x2490" start="0x400A8000" start_s="0x500A8000"/>
   </partition>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 0.9.7"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
+  <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>
   <creator azone="../LPC55S69.azone" info="" rzone="../LPC55S69.rzone" security="s" tool="CMSIS Zone PlugIn for Eclipse 1.0.0"/>

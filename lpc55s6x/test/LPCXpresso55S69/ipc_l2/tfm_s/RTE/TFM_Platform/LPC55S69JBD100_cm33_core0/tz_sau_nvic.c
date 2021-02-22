@@ -13,44 +13,44 @@ void TZ_Config_SAU(void)
   /* Initialize SAU Region 0 */
   SAU->RNR  =  (0U                      & SAU_RNR_REGION_Msk);
   SAU->RBAR =  (0x00030000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x0006FFE0U             & SAU_RLAR_LADDR_Msk) |
+  SAU->RLAR =  (0x00087FE0U             & SAU_RLAR_LADDR_Msk) |
               ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 1 */
   SAU->RNR  =  (1U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x04000000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x04007FE0U             & SAU_RLAR_LADDR_Msk) |
+  SAU->RBAR =  (0x0009DE00U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x0009FDE0U             & SAU_RLAR_LADDR_Msk) |
               ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 2 */
   SAU->RNR  =  (2U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x1002F800U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x1002FB20U             & SAU_RLAR_LADDR_Msk) |
-              ((1U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
+  SAU->RBAR =  (0x03000000U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x0301FFE0U             & SAU_RLAR_LADDR_Msk) |
+              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 3 */
   SAU->RNR  =  (3U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x20020000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x20043FE0U             & SAU_RLAR_LADDR_Msk) |
+  SAU->RBAR =  (0x04000000U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x04007FE0U             & SAU_RLAR_LADDR_Msk) |
               ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 4 */
   SAU->RNR  =  (4U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x40000000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x4FFFFFE0U             & SAU_RLAR_LADDR_Msk) |
-              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
+  SAU->RBAR =  (0x1002F800U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x1002FB20U             & SAU_RLAR_LADDR_Msk) |
+              ((1U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 5 */
   SAU->RNR  =  (5U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x00000000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x00000000U             & SAU_RLAR_LADDR_Msk) |
-              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 0U;
+  SAU->RBAR =  (0x20020000U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x20043FE0U             & SAU_RLAR_LADDR_Msk) |
+              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 6 */
   SAU->RNR  =  (6U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (0x00000000U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (0x00000000U             & SAU_RLAR_LADDR_Msk) |
-              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 0U;
+  SAU->RBAR =  (0x40000000U             & SAU_RBAR_BADDR_Msk);
+  SAU->RLAR =  (0x4FFFFFE0U             & SAU_RLAR_LADDR_Msk) |
+              ((0U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
 
   /* Initialize SAU Region 7 */
   SAU->RNR  =  (7U                      & SAU_RNR_REGION_Msk);

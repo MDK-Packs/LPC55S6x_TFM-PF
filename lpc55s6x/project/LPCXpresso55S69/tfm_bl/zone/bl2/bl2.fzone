@@ -15,9 +15,37 @@
       </access>
       <dma>0</dma>
       <external>0</external>
-      <info>Secure Image Primary slot</info>
-      <name>IMAGE_1_S</name>
-      <physical>0x00010000</physical>
+      <info>Non-secure Image Primary slot</info>
+      <name>IMAGE_1_NS</name>
+      <physical>0x00030000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00018000</size>
+      <start>0x00030000</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Secure Image Secondary slot</info>
+      <name>IMAGE_2_S</name>
+      <physical>0x00048000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -27,9 +55,65 @@
         <n>0</n>
         <c>1</c>
       </security>
-      <shared>1</shared>
-      <size>0x20000</size>
-      <start>0x10010000</start>
+      <shared>0</shared>
+      <size>0x00028000</size>
+      <start>0x10048000</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Flash (Secure)</info>
+      <name>FLASH_S</name>
+      <physical>0x00000000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>0</n>
+        <c>1</c>
+      </security>
+      <shared>0</shared>
+      <size>0x0009DE00</size>
+      <start>0x10000000</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Bootloader Image</info>
+      <name>IMAGE_BL2</name>
+      <physical>0x00000000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>1</s>
+        <n>0</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x00008000</size>
+      <start>0x10000000</start>
       <startup>0</startup>
       <type>ROM</type>
       <uninit>0</uninit>
@@ -58,6 +142,90 @@
       <shared>1</shared>
       <size>0x00000200</size>
       <start>0x10096000</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>1</w>
+        <x>0</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>SRAM Banks 0-4 (Secure)</info>
+      <name>SRAM_S</name>
+      <physical>0x20000000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>1</s>
+        <n>0</n>
+        <c>0</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00044000</size>
+      <start>0x30000000</start>
+      <startup>0</startup>
+      <type>RAM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Secure Image Primary slot</info>
+      <name>IMAGE_1_S</name>
+      <physical>0x00008000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>0</n>
+        <c>1</c>
+      </security>
+      <shared>1</shared>
+      <size>0x00028000</size>
+      <start>0x10008000</start>
+      <startup>0</startup>
+      <type>ROM</type>
+      <uninit>0</uninit>
+    </memory>
+    <memory>
+      <access>
+        <p>0</p>
+        <r>1</r>
+        <w>0</w>
+        <x>1</x>
+      </access>
+      <dma>0</dma>
+      <external>0</external>
+      <info>Non-secure Image Secondary slot</info>
+      <name>IMAGE_2_NS</name>
+      <physical>0x00070000</physical>
+      <privilege>
+        <p>0</p>
+        <u>0</u>
+      </privilege>
+      <security>
+        <s>0</s>
+        <n>1</n>
+        <c>0</c>
+      </security>
+      <shared>0</shared>
+      <size>0x00018000</size>
+      <start>0x00070000</start>
       <startup>0</startup>
       <type>ROM</type>
       <uninit>0</uninit>
@@ -101,7 +269,7 @@
       <external>0</external>
       <info>Scratch area for Bootloader</info>
       <name>SCRATCH</name>
-      <physical>0x00070000</physical>
+      <physical>0x00088000</physical>
       <privilege>
         <p>0</p>
         <u>0</u>
@@ -112,176 +280,8 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x20000</size>
-      <start>0x10070000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Flash (Secure)</info>
-      <name>FLASH_S</name>
-      <physical>0x00000000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>0</n>
-        <c>1</c>
-      </security>
-      <shared>0</shared>
-      <size>0x0009DE00</size>
-      <start>0x10000000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Non-secure Image Primary slot</info>
-      <name>IMAGE_1_NS</name>
-      <physical>0x00030000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0x10000</size>
-      <start>0x00030000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>1</w>
-        <x>0</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>SRAM Banks 0-4 (Secure)</info>
-      <name>SRAM_S</name>
-      <physical>0x20000000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>1</s>
-        <n>0</n>
-        <c>0</c>
-      </security>
-      <shared>1</shared>
-      <size>0x00044000</size>
-      <start>0x30000000</start>
-      <startup>0</startup>
-      <type>RAM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Secure Image Secondary slot</info>
-      <name>IMAGE_2_S</name>
-      <physical>0x00040000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>0</n>
-        <c>1</c>
-      </security>
-      <shared>0</shared>
-      <size>0x00020000</size>
-      <start>0x10040000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Bootloader Image</info>
-      <name>IMAGE_BL2</name>
-      <physical>0x00000000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>1</s>
-        <n>0</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x10000</size>
-      <start>0x10000000</start>
-      <startup>0</startup>
-      <type>ROM</type>
-      <uninit>0</uninit>
-    </memory>
-    <memory>
-      <access>
-        <p>0</p>
-        <r>1</r>
-        <w>0</w>
-        <x>1</x>
-      </access>
-      <dma>0</dma>
-      <external>0</external>
-      <info>Non-secure Image Secondary slot</info>
-      <name>IMAGE_2_NS</name>
-      <physical>0x00060000</physical>
-      <privilege>
-        <p>0</p>
-        <u>0</u>
-      </privilege>
-      <security>
-        <s>0</s>
-        <n>1</n>
-        <c>0</c>
-      </security>
-      <shared>0</shared>
-      <size>0x10000</size>
-      <start>0x00060000</start>
+      <size>0x00008000</size>
+      <start>0x10088000</start>
       <startup>0</startup>
       <type>ROM</type>
       <uninit>0</uninit>
@@ -296,9 +296,9 @@
       <S_bit>1</S_bit>
       <P_bit>0</P_bit>
       <bit_comment>memory:CODE_BL2</bit_comment>
-      <S_bit>1</S_bit>
+      <S_bit>0</S_bit>
       <P_bit>0</P_bit>
-      <bit_comment>memory:CODE_BL2</bit_comment>
+      <bit_comment/>
       <S_bit>0</S_bit>
       <P_bit>0</P_bit>
       <bit_comment/>
@@ -796,7 +796,7 @@
         <c>0</c>
       </security>
       <shared>0</shared>
-      <size>0x00010000</size>
+      <size>0x00008000</size>
       <start>0x10000000</start>
       <startup>1</startup>
       <type>ROM</type>
